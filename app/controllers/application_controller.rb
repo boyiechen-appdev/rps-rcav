@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  layout(false)
+  layout("wrapper.html.erb")
 
   # Add your actions below this line
   # ================================
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     # redirect_to("https://wiki.ubuntu-tw.org/index.php?title=首頁")
     # render({ :plain => "Hello, world!" })
     # render({ :html => "<h1>Hello, world!</h1>".html_safe })
-    render({ :template => "game_templates/user_rock.html.erb" })
+    render({ :template => "game_templates/user_rock.html.erb", :layout => "wrapper.html.erb" })
   end
 
   def play_paper
@@ -26,6 +26,6 @@ class ApplicationController < ActionController::Base
       @outcome = "lost"
     end
 
-    render({ :template => "game_templates/user_paper.html.erb" })
+    render({ :template => "game_templates/user_paper.html.erb", :layout => "wrapper.html.erb" })
   end
 end
