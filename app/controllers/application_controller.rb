@@ -9,10 +9,16 @@ class ApplicationController < ActionController::Base
   end
 
   def play_rock
-    # redirect_to("https://wiki.ubuntu-tw.org/index.php?title=首頁")
-    # render({ :plain => "Hello, world!" })
-    # render({ :html => "<h1>Hello, world!</h1>".html_safe })
-    render({ :template => "game_templates/user_rock.html.erb", :layout => "wrapper.html.erb" })
+    @comp_move = ["rock", "paper", "scissors"].sample
+
+    if @comp_move == "rock"
+      @outcome = "tied"
+    elsif @comp_move == "scissors"
+      @outcome = "won"
+    elsif @comp_move == "paper"
+      @outcome = "lost"
+    end
+    render({ :template => "game_templates/user_rock.html.erb" })
   end
 
   def play_paper
@@ -26,6 +32,20 @@ class ApplicationController < ActionController::Base
       @outcome = "lost"
     end
 
-    render({ :template => "game_templates/user_paper.html.erb", :layout => "wrapper.html.erb" })
+    render({ :template => "game_templates/user_paper.html.erb" })
+  end
+
+  def play_scissors
+    @comp_move = ["rock", "paper", "scissors"].sample
+
+    if @comp_move == "rock"
+      @outcome = "lost"
+    elsif @comp_move == "scissors"
+      @outcome = "tied"
+    elsif @comp_move == "paper"
+      @outcome = "won"
+    end
+
+    render({ :template => "game_templates/user_scissors.html.erb" })
   end
 end
